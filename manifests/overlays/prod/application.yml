@@ -1,34 +1,11 @@
-spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/cloud_sample
-    username: sa
-    password: sa
-    hikari:
-      maximum-pool-size: 2
-      minimum-idle: 2
-  jpa:
-    show-sql: true
-    hibernate:
-      ddl-auto: update
-    defer-datasource-initialization: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-  sql:
-    init:
-      # mode: always
-      mode: embedded
-
-server:
-  port: 8080
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: "*"
-
-pvc:
-  path: /mnt/cloud-sample
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: application-config
+  namespace: prod
+data:
+  DB_HOST: pgsqlserver2.postgres.database.azure.com
+  DB_PORT: "5432"
+  DB_NAME: prod_db
+  DB_USER: prod_user
+  DB_PASSWORD: prod_password
